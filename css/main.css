@@ -1,33 +1,23 @@
 header {
     margin-top: 1%;
-    color: white;
 }
 
-.font-title {
-    font-family: 'Indie Flower', cursive;
-    font-size: 3em;
-    text-shadow: 0 0 10px #fff, 0 5px 10px #fff;
+label {
+    font-weight: 400;
 }
+
+
+#span-termos {
+    text-decoration: underline;
+}
+.font-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+}
+
 .font-title-sub {
     color: #6c757d;
 }
 .form-main {
     margin-top: 15px;
-}
-
-.main-div {
-    background-image: url('../img/large_opposites-attract-ptgleop3.jpg');
-    background-repeat: no-repeat;
-    background-size:100%;
-    bottom: 0;
-    color: black;
-    left: 0;
-    overflow: auto;
-    padding: 3em;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-    background-size: auto;
-
 }
