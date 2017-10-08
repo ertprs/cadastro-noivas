@@ -6,24 +6,47 @@
  * Time: 14:48
  */
 
+//var_dump($_POST);
+
+include '../../settings_mysql.php';
+
 try {
-    $pdo = new PDO('mysql:host=177.85.101.50:3306;dbname=blogmoda_noivasn;charset=utf8', 'blogmoda_noivas_news', 'LZc})&_}+yp9');
+    $pdo = new PDO(
+        sprintf(
+            'mysql:host=%s;dbname=%s;port=%s;charset=%s',
+            $settings['host'],
+            $settings['name'],
+            $settings['port'],
+            $settings['charset']
+        ),
+        $settings['username'],
+        $settings['password']
+    );
+    echo 'Conectado ao mysql';
 } catch (PDOException $e) {
     $code = $e->getCode();
     $message = $e->getMessage();
-    echo 'Não foi possivel se conectar ao banco de dados';
+    echo '<h2 style="color: red;font-weight: bold">Não foi possivel se conectar ao banco de dados</h2><br>';
     echo $code . '<br/>';
     echo $message . '<br/>';
     exit;
 }
 
+$pdo->beginTransaction();
 
-$sql = "INSERT INTO usuarios (nome, whatsapp, email) VALUES (':nome',':whatsapp',':email')";
+$stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES (:nome,:whatsapp,:email)");
 
-$nome = filter_input(INPUT_POST, 'nome');
-$whatsapp = filter_input(INPUT_POST, 'whatsapp');
+$nome = filter_input(INPUT_POST, 'fullName');
+$whatsapp = filter_input(INPUT_POST, 'whatsApp');
 $email = filter_input(INPUT_POST, 'email');
 
-/*$stmt = $pdo->prepare($sql);
-  $result->execute();
-*/
+$json = $nome . ' - ' . $whatsapp . ' - ' . $email;
+echo json_encode($json);
+
+$stmtAddUser->bindValue(':nome',$nome);
+$stmtAddUser->bindValue(':whatsapp',$whatsapp);
+$stmtAddUser->bindValue(':email',$email);
+
+$stmtAddUser->execute();
+
+$pdo->commit();

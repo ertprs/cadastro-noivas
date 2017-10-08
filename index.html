@@ -26,12 +26,13 @@
 </header>
 <main>
     <div>
-        <form class="form-main">
+        <form class="form-main" id="register">
             <div class="row justify-content-center">
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label for="fullName">Nos diga o seu nome</label>
-                        <input type="text" class="form-control" id="fullName" pattern="[a-z\s]+$" placeholder="Nome completo" required title="Números não são permitidos neste campo!">
+                        <input type="text" class="form-control" id="fullName" pattern="[a-zA-Z\s]{10,}$" name="fullName"
+                               placeholder="Nome completo" required title="Seu nome deve ter mais de 10 letras e somente letras.">
                     </div>
                 </div>
             </div>
@@ -39,13 +40,15 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="whatsapp">Qual é o seu WhatsApp?</label>
-                        <input type="tel" class="form-control" id="whatsapp" pattern="[0-9]+$" placeholder="+55-xx-xxxx-xxxx" required title="Letras não são permitidos neste campo!">
+                        <input type="tel" class="form-control" id="whatsapp" pattern="[0-9+-]+$" name="whatsApp"
+                               placeholder="+55-xx-xxxx-xxxx" required title="Letras não são permitidos neste campo!">
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Endereço de e-mail</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Seu e-mail" title="O e-mail informado não corresponde ao padrão.">
+                        <input type="email" class="form-control" id="exampleInputEmail1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email"
+                               placeholder="Seu e-mail" title="O e-mail informado não corresponde ao padrão.">
                     </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                 <div class="col-sm-4">
                     <div class="form-check">
                         <label for="termos" class="form-check-label">
-                            <input type="checkbox" class="form-check-input" id="termos" required>
+                            <input type="checkbox" class="form-check-input" id="termos" name="termos" required>
                             Concordo com os <a id="span-termos" href="#">termos</a>
                         </label>
                     </div>
@@ -91,6 +94,8 @@
     </div>
 </div>
 
+
+<div id="result"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
