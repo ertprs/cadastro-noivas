@@ -22,7 +22,7 @@ try {
         $settings['username'],
         $settings['password']
     );
-    echo 'Conectado ao mysql';
+    //echo 'Conectado ao mysql';
 } catch (PDOException $e) {
     $code = $e->getCode();
     $message = $e->getMessage();
@@ -31,22 +31,25 @@ try {
     echo $message . '<br/>';
     exit;
 }
-
-$pdo->beginTransaction();
-
-$stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES (:nome,:whatsapp,:email)");
-
 $nome = filter_input(INPUT_POST, 'fullName');
 $whatsapp = filter_input(INPUT_POST, 'whatsApp');
 $email = filter_input(INPUT_POST, 'email');
 
-$json = $nome . ' - ' . $whatsapp . ' - ' . $email;
-echo json_encode($json);
+$pdo->beginTransaction();
 
-$stmtAddUser->bindValue(':nome',$nome);
-$stmtAddUser->bindValue(':whatsapp',$whatsapp);
-$stmtAddUser->bindValue(':email',$email);
+$stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES ( :nome, :whatsapp, :email)");
+//$stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES ( ':nome', ':whatsapp', ':email')");
+
+$stmtAddUser->bindParam(":nome", $nome, PDO::PARAM_STR);
+$stmtAddUser->bindParam(":whatsapp", $whatsapp, PDO::PARAM_STR);
+$stmtAddUser->bindParam(":email", $email, PDO::PARAM_STR);
 
 $stmtAddUser->execute();
-
+$json['lastId'] = $pdo->lastInsertId();
 $pdo->commit();
+
+
+$json['nome'] = $nome;
+$json['whatsapp'] = $whatsapp;
+$json['email'] = $email;
+echo json_encode($json);

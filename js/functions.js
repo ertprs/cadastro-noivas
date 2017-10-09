@@ -16,13 +16,22 @@ $(document).ready(function () {
                'success'
            );
        }*/
-       $('input:required').addClass('is-invalid');
+       $('input:invalid').addClass('is-invalid');
       //return false;
    });
 
     $('#span-termos').click(function () {
         $('#modal').on('show.bs.modal');
         console.log('span termos');
+        swal(
+            'Termos Wedding Grupo.',
+            'A finalidade do Wedding Grupo é reunir o máximo de pessoas voltadas para a área de casamento. Tanto fornecedores quanto clientes.\n' +
+            'As promoções e ofertas postadas no grupo serão EXCLUSIVAS para usuários do grupo.\n' +
+            'Todos os conteúdos postados no Wedding Grupo devem ser relacionados a casamento. Qualquer postagem irrelevante será notificada e caso aconteça uma segunda vez o usuário será excluído do grupo sem aviso prévio.\n' +
+            'Uma vez excluído o usuário não poderá participar do grupo novamente. Sendo assim, ficará fora das novas promoções e ofertas.\n' +
+            'Caso o usuário excluído seja participante de alguma promoção ou oferta, continuará valendo o pacote fechado.',
+            'info'
+        )
     });
 
 
@@ -38,9 +47,19 @@ $(document).ready(function () {
 
         // Put the results in a div
         posting.done(function( data ) {
-            let content = $( data ).find( "#content" );
+            //let content = $( data ).find( "#content" );
             $( "#result" ).html(data);
-            console.log(content);
+            console.log(data);
+            txt = JSON.parse(data);
+            console.log(txt.lastId);
+
+            if (txt.lastId > 0) {
+                swal(
+                    'Muito Obrigado!',
+                    'Cadastrado com sucesso!',
+                    'success'
+                );
+            }
         });
 
     });
