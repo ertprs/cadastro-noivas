@@ -50,14 +50,26 @@ $(document).ready(function () {
             //console.log(data);
             if (data) {
                 txt = JSON.parse(data);
-                //console.log(txt.lastId);
-                if (txt.lastId > 0) {
+                //console.log(txt.searchWhatsapp);
+                if (txt.lastId) {
+                    if (txt.lastId > 0) {
+                        swal(
+                            'Muito Obrigado!',
+                            'Cadastrado com sucesso!',
+                            'success'
+                        );
+                        $("#swal2-content").css('textAlign', 'center');
+                        $('#register')[0].reset();
+                    }
+                }
+
+                if (txt.searchWhatsapp) {
                     swal(
-                        'Muito Obrigado!',
-                        'Cadastrado com sucesso!',
-                        'success'
+                        'Número já Cadastrado!',
+                        "<h3>" + txt.searchWhatsapp + "<h3>",
+                        'error'
                     );
-                    $('#register')[0].reset();
+                    $("#swal2-content").css('textAlign', 'center');
                 }
             }
         });

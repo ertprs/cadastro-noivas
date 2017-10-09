@@ -9,6 +9,7 @@ label {
 #span-termos {
     text-decoration: underline;
 }
+
 .font-title {
     font-family: 'Roboto', sans-serif;
     font-size: 3em;
@@ -17,6 +18,11 @@ label {
 .font-title-sub {
     color: #6c757d;
 }
+
 .form-main {
     margin-top: 15px;
+}
+
+#swal2-content {
+    text-align: justify;
 }
