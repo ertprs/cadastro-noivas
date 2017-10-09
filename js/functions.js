@@ -48,14 +48,17 @@ $(document).ready(function () {
         posting.done(function( data ) {
             //$( "#result" ).html(data);
             //console.log(data);
-            txt = JSON.parse(data);
-            //console.log(txt.lastId);
-            if (txt.lastId > 0) {
-                swal(
-                    'Muito Obrigado!',
-                    'Cadastrado com sucesso!',
-                    'success'
-                );
+            if (data) {
+                txt = JSON.parse(data);
+                //console.log(txt.lastId);
+                if (txt.lastId > 0) {
+                    swal(
+                        'Muito Obrigado!',
+                        'Cadastrado com sucesso!',
+                        'success'
+                    );
+                    $('#register')[0].reset();
+                }
             }
         });
 
