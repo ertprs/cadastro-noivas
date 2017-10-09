@@ -11,7 +11,7 @@
 if (file_exists('../../settings_mysql.php')) {
     include '../../settings_mysql.php';
     $json['fileExists'] = "Arquivo encontrado";
-} elseif (file_exists('../../settings_mysql.php')) {
+} elseif (!file_exists('../../settings_mysql.php')) {
     $json['fileExists'] = "Arquivo NÃO encontrado";
 }
 
