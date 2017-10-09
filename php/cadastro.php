@@ -6,8 +6,6 @@
  * Time: 14:48
  */
 
-//var_dump($_POST);
-
 if (file_exists('../../settings_mysql.php')) {
     include '../../settings_mysql.php';
     $json['fileExists'] = "Arquivo encontrado";
@@ -43,7 +41,6 @@ $email = filter_input(INPUT_POST, 'email');
 $pdo->beginTransaction();
 
 $stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES ( :nome, :whatsapp, :email)");
-//$stmtAddUser = $pdo->prepare("INSERT INTO usuarios (nome, whatsapp, email) VALUES ( ':nome', ':whatsapp', ':email')");
 
 $stmtAddUser->bindParam(":nome", $nome, PDO::PARAM_STR);
 $stmtAddUser->bindParam(":whatsapp", $whatsapp, PDO::PARAM_STR);
