@@ -22,7 +22,6 @@ $(document).ready(function () {
 
     $('#span-termos').click(function () {
         $('#modal').on('show.bs.modal');
-        console.log('span termos');
         swal(
             'Termos Wedding Grupo.',
             'A finalidade do Wedding Grupo é reunir o máximo de pessoas voltadas para a área de casamento. Tanto fornecedores quanto clientes.\n' +
@@ -47,12 +46,10 @@ $(document).ready(function () {
 
         // Put the results in a div
         posting.done(function( data ) {
-            //let content = $( data ).find( "#content" );
-            $( "#result" ).html(data);
-            console.log(data);
+            //$( "#result" ).html(data);
+            //console.log(data);
             txt = JSON.parse(data);
-            console.log(txt.lastId);
-
+            //console.log(txt.lastId);
             if (txt.lastId > 0) {
                 swal(
                     'Muito Obrigado!',
