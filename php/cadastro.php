@@ -8,7 +8,12 @@
 
 //var_dump($_POST);
 
-include '../../settings_mysql.php';
+if (file_exists('../../settings_mysql.php')) {
+    include '../../settings_mysql.php';
+    $json['fileExists'] = "Arquivo encontrado";
+} elseif (file_exists('../../settings_mysql.php')) {
+    $json['fileExists'] = "Arquivo NÃO encontrado";
+}
 
 try {
     $pdo = new PDO(
